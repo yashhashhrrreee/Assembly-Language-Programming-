@@ -1,0 +1,48 @@
+20. Program to search a character in a given string.(hard-coded).
+
+.model small
+.stack 100h
+.data
+
+text db 'hello world'
+count dw 13   
+search db 'h'
+found db 'char found: $'
+notfound db 'char not found:$'
+
+.code
+
+main proc near
+
+mov ax,@data
+mov ds,ax
+mov es,ax
+                     
+mov di,offset text
+mov cx,count
+mov al,search
+repne scasb            ;scasb=scan char byte by byte
+                       ;repne= repeted operation while it not equale to zero 
+                       ;means h=o gives 1 ,e=o gives 1,l=o gives 1 .... o=o gives 0
+                        
+jz yes                 ;if char is found then zero flag is set
+
+mov ah,09h
+mov dx,offset notfound
+
+int 21h
+jmp over
+
+yes:
+mov ah,09h
+
+mov dx,offset found
+int 21h
+
+ over:                     
+mov ah,4ch
+
+int 21h
+endp
+
+end main

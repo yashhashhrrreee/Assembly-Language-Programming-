@@ -1,0 +1,69 @@
+26. Program to Concatenate a string to another string.
+
+.model small
+.data
+
+empty db 10,13, "   $"
+str1 db 25,?,25 dup('$')
+str2 db 25,?,25 dup('$')
+
+string db 10,13, "Enter the first string: $"
+string2 db 10,13, "Enter second string: $"
+concat db 10,13, "Concatenated string: $"
+
+.code
+
+mov ax,@data
+mov ds,ax
+
+mov ah,09h
+lea dx,string
+int 21h
+
+mov ah,0ah
+lea dx,str1
+int 21h
+
+mov ah,09h
+lea dx,string2
+int 21h
+
+mov ah,0ah
+lea dx,str2
+int 21h
+	   
+mov cl,str1+1
+mov si,offset str1
+
+next:
+inc si
+dec cl
+jnz next
+inc si
+	   
+inc si
+mov di,offset str2
+inc di
+inc di
+	   
+mov cl,str2+1
+
+move_next:
+mov al,[di]
+mov [si],al
+inc si
+inc di
+dec cl
+jnz move_next
+
+mov ah,09h
+lea dx,concat
+int 21h
+
+mov ah,09h
+lea dx,str1+2
+int 21h
+
+mov ah,4ch
+int 21h
+end
