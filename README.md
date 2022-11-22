@@ -5,24 +5,24 @@ To Run the Codes Run the Following Commands
 
 Store the Download Software in the File TASM  in Either of the stroage file 
 
-MOUNT P 'STROAGE FILE':\TASM 
+**MOUNT P 'STROAGE FILE':\TASM** 
 
 MOUNT P D:\TASM
 P:
         
-Edit code:
+**Edit code:**
 
 EDIT 'FILENAME'.ASM
     
- Complie code:
+** Complie code:**
  
  TASM 'FILENAME'.ASM
     
- Create Execution File :
+** Create Execution File :**
  
  TLINK 'FILENAME'.OBJ
     
-Run File :
+**Run File :**
 
 'FILENAME'.EXE
     
