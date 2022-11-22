@@ -14,11 +14,11 @@ P:
 
 EDIT 'FILENAME'.ASM
     
-** Complie code:**
+**Complie code:**
  
  TASM 'FILENAME'.ASM
     
-** Create Execution File :**
+**Create Execution File :**
  
  TLINK 'FILENAME'.OBJ
     
