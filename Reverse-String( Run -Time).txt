@@ -1,0 +1,50 @@
+23. Program that takes string as input from the user, reverses it and display the reversed string.
+
+; initialize macro
+ print macro mes    
+   mov   ah, 09h
+   lea   dx, mes
+   int   21h
+endm
+.model small
+.data
+   ms1   db 10, 13, "enter the string: $"
+   ms2   db 10, 13, "$"
+   ms3   db 10, 13, "reverse string is: $"
+ buff db 81
+   db   0
+   db   81 dup(0)
+.code    
+   mov   ax, @data
+   mov   ds, ax
+
+; call macro to diplay ms1 on screen
+   print   ms1    
+
+; input the string till enter is pressed  
+   mov   ah, 0ah    
+   lea   dx, buff
+   int   21h
+
+; initialize ch=00
+   mov   ch, 00    
+
+; cl= length is string
+   mov   cl, buff+1    
+
+;
+   lea   bx, buff  
+   inc   bx
+   mov   di, cx  
+   print   ms2
+ back:
+   mov   ah, 02h
+   mov   dl, [bx+di]
+   int   21h
+   dec   di
+   jnz   back
+
+; normal termination to dos
+   mov   ah, 4ch  
+   int   21h
+   end

@@ -1,0 +1,31 @@
+29. Program to find smallest/largest number in a given array.
+
+
+DATA SEGMENT
+A DB 5,2,5,6,4,3
+B DB ?
+DATA ENDS
+CODE SEGMENT
+      ASSUME DS:DATA,CS:CODE
+START:
+      MOV AX,DATA
+      MOV DS,AX
+      MOV CX,0000
+      MOV CL,06
+      LEA BX,A
+      MOV AL,00
+      MOV AH,BYTE PTR[BX]
+   L1:CMP AL,BYTE PTR[BX]
+      JNC L2
+      MOV AL,BYTE PTR[BX]
+   L2:CMP AH,BYTE PTR[BX]
+      JC L3
+      MOV AH,BYTE PTR[BX]
+   L3:INC BX
+      DEC CL
+      CMP CL,00
+      JNZ L1
+      MOV AH,4CH
+      INT 21H
+CODE ENDS
+END START          
